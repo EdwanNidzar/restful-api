@@ -23,3 +23,5 @@ Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class);
 Route::apiResource('/editions', App\Http\Controllers\Api\EdtionController::class);
 
 Route::apiResource('/bulletins', App\Http\Controllers\Api\BulletinController::class);
+
+Route::apiResource('/events', App\Http\Controllers\Api\EventController::class);
