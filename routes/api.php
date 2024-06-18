@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class);
 
 Route::apiResource('/editions', App\Http\Controllers\Api\EdtionController::class);
+
+Route::apiResource('/bulletins', App\Http\Controllers\Api\BulletinController::class);
