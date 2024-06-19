@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             EdtionSeeder::class,
             BulletinSeeder::class,
             EventSeeder::class,
+            NewsSeeder::class,
         ]);
     }
 }
