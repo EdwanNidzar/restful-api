@@ -12,8 +12,11 @@ class BulletinController extends Controller
 {
     public function index()
     {
-       $bulletins = Bulletin::all();
-       return new PostResource(true, 'Bulletin retrieved successfully.', $bulletins);
+        $bulletins = Bulletin::select('bulletins.id', 'bulletins.title', 'bulletins.page_count', 'bulletins.cover_image', 'bulletins.url_bulletin', 'bulletins.status', 'bulletins.release_status', 'edtions.title as edition_title')
+                        ->join('edtions', 'bulletins.edition_id', '=', 'edtions.id')
+                        ->get();
+
+        return new PostResource(true, 'Bulletins retrieved successfully.', $bulletins);
     }
 
     public function store(Request $request)

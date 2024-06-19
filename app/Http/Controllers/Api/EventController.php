@@ -11,24 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-    // Define the validation rules as a method to reuse
-    private function validationRules()
-    {
-        return [
-            'event_date' => 'required|date',
-            'event_time' => 'required',
-            'event_name' => 'required|string|max:255',
-            'event_description' => 'required|string',
-            'event_location' => 'required|string|max:255',
-            'event_address' => 'required|string|max:255',
-            'event_image' => 'required|image|max:2048',
-            'event_organization' => 'required|string|max:255',
-            'event_contact' => 'required|string|max:255',
-            'event_status' => 'required|string|max:255',
-            'submission_status' => 'required|string|max:255',
-        ];
-    }
-
     // Handle image upload as a method to reuse
     private function handleImageUpload($image)
     {
@@ -47,7 +29,21 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->validationRules());
+
+        $validator = Validator::make($request->all(), 
+        [
+            'event_date' => 'required|date',
+            'event_time' => 'required',
+            'event_name' => 'required|string|max:255',
+            'event_description' => 'required|string',
+            'event_location' => 'required|string|max:255',
+            'event_address' => 'required|string|max:255',
+            'event_image' => 'required|image|max:2048',
+            'event_organization' => 'required|string|max:255',
+            'event_contact' => 'required|string|max:255',
+            'event_status' => 'required|string|max:255',
+            'submission_status' => 'required|string|max:255',
+        ]);
 
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
@@ -92,7 +88,20 @@ class EventController extends Controller
             return response()->json(['success' => false, 'message' => 'Event not found'], 404);
         }
 
-        $validator = Validator::make($request->all(), $this->validationRules());
+        $validator = Validator::make($request->all(), 
+        [
+            'event_date' => 'required|date',
+            'event_time' => 'required',
+            'event_name' => 'required|string|max:255',
+            'event_description' => 'required|string',
+            'event_location' => 'required|string|max:255',
+            'event_address' => 'required|string|max:255',
+            'event_image' => 'nullable|image|max:2048',
+            'event_organization' => 'required|string|max:255',
+            'event_contact' => 'required|string|max:255',
+            'event_status' => 'required|string|max:255',
+            'submission_status' => 'required|string|max:255',
+        ]);
 
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
